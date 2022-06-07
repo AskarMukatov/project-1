@@ -1,0 +1,29 @@
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+    
+}
+
+.products {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px rgb(174, 167, 167) solid;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgb(152, 152, 152);
+    width: 200px;
+    padding: 20px;
+}
+
+img {
+    max-width: 150px;
+    height: 100px;
+    /* align-items: center; */
+    /* justify-items: center; */
+    
+}
