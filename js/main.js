@@ -22,6 +22,8 @@
 
 // renderPage(products);
 
+const API = "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/"
+
 class ProductList {
     constructor (container = ".products") {
         this.container = container;
@@ -74,23 +76,66 @@ class ProductItem {
 
 let list = new ProductList();
 
+
+
 class Cart {
-    addGoods() {
+    constructor(container=".cart-elm") {
+        this.container = container;
+        this.goods = [];
 
+        this._clickCart();
+        this._getCartItem()
+        .then(data => {
+            this.goods = data.contents;
+            this.render();
+        })
     }
-    removeGoods() {
 
+    _getCartItem() {
+        return fetch(`${API}/getBasket.json`)
+            .then(result => result.json())
+            .catch(error => {
+                alert(Error);
+            })
     }
-    changeGoods() {
 
-    }
+   
     render() {
+        const block = document.querySelector(this.container);
+        for (let product of this.goods) {
+            const productObj = new CartItem();
 
+            block.insertAdjacentHTML('beforeend', productObj.render(product));
+        }
     }
+
+    _clickCart() {
+        document.querySelector('.btn-cart').addEventListener('click', () => {
+        document.querySelector(this.container).classList.toggle('invisible')});
+    }
+
 }
 
 class CartItem {
-    render() {
-        
+    render(product, img='https://via.placeholder.com/50x50') {
+        return `<div class="cart-item" data-id="${product.id_product}">
+                    <div class="cart-block1">
+                        <div class=cart-item1>
+                            <img src="${img}" alt="${product.product_name}">
+                        </div>
+                        <div class="cart-item2">
+                            <p class="product-tittle">${product.product_name}</p>
+                            <p class="product-quantity">Колличество: ${product.quantity}</p>
+                            <p class="product-single-price">Цена: ${product.price}$</p>
+                        </div>
+                        <div class="cart-item3">delete</div>
+                    </div>
+                    <div class="cart-block2">
+                        <div class="countGoods"></div>
+                        <div class="amount"></div>
+                    </div>               
+                </div>`
     }
 }
+
+let obj = new Cart();
