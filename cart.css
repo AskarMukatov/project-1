@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.cart-item {   
+    font-family: "Roboto", san-serif;
+    font-weight: 400;
+}
+
+.cart-block1 {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-item2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-tittle {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.product-quantity {
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.product-single-price {
+    font-weight: 900;
+    margin-top: 20px;
+}
